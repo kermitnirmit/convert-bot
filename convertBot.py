@@ -55,7 +55,19 @@ async def on_message(message):
                 old = float(message.content[4:end])
                 newC = old * 0.62
                 toReturn = str(newC)
-                await client.send_message(message.channel, message.content[4:end]+ "km is " + toReturn + "mi")        
+                await client.send_message(message.channel, message.content[4:end]+ "km is " + toReturn + "mi")
+            if message.content.lower().endswith("kg"):
+                end = len(message.content) - 2
+                old = float(message.content[4:end])
+                newC = old * 2.21
+                toReturn = str(newC)
+                await client.send_message(message.channel, message.content[4:end]+ "kg is " + toReturn + "lbs")
+            if message.content.lower().endswith("lbs"):
+                end = len(message.content) - 3
+                old = float(message.content[4:end])
+                newC = old / 2.21
+                toReturn = str(newC)
+                await client.send_message(message.channel, message.content[4:end]+ "lbs is " + toReturn + "kg")    
         if message.content.lower().find("mood") > -1:
             await client.send_message(message.channel, "Here's a :cookie:")
         if message.content.lower().find("shut up nirmit") > -1:
