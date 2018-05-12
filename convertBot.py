@@ -16,25 +16,25 @@ async def on_message(message):
         if message.content.lower().startswith("conv"):
             if message.content.lower().endswith("cm"):
                 end = len(message.content) - 2
-                old = int(message.content[4:end])
+                old = float(message.content[4:end])
                 newF = old / 2.54
                 toReturn = str(newF)
                 await client.send_message(message.channel, message.content[4:end]+ "cm is " + toReturn + "in")
             if message.content.lower().endswith("in"):
                 end = len(message.content) - 2
-                old = int(message.content[4:end])
+                old = float(message.content[4:end])
                 newF = old * 2.54
                 toReturn = str(newF)
                 await client.send_message(message.channel, message.content[4:end]+ "in is " + toReturn + "cm")
             if message.content.lower().endswith("c"):
                 end = len(message.content) - 1
-                old = int(message.content[4:end])
+                old = float(message.content[4:end])
                 newF = (old * 1.8) + 32
                 toReturn = str(newF)
                 await client.send_message(message.channel, message.content[4:end]+ "C is " + toReturn + "F")
             if message.content.lower().endswith("f"):
                 end = len(message.content) - 1
-                old = int(message.content[4:end])
+                old = float(message.content[4:end])
                 newC = (old - 32) / 1.8
                 toReturn = str(newC)
                 await client.send_message(message.channel, message.content[4:end]+ "F is " + toReturn + "C")    
