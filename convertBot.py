@@ -14,6 +14,18 @@ async def on_ready():
 async def on_message(message):
     if message.author.id != "435229925503533057":
         if message.content.lower().startswith("conv"):
+            if message.content.lower().endswith("cm"):
+                end = len(message.content) - 2
+                old = int(message.content[4:end])
+                newF = old / 2.54
+                toReturn = str(newF)
+                await client.send_message(message.channel, message.content[4:end]+ "cm is " + toReturn + "in")
+            if message.content.lower().endswith("in"):
+                end = len(message.content) - 2
+                old = int(message.content[4:end])
+                newF = old * 2.54
+                toReturn = str(newF)
+                await client.send_message(message.channel, message.content[4:end]+ "in is " + toReturn + "cm")
             if message.content.lower().endswith("c"):
                 end = len(message.content) - 1
                 old = int(message.content[4:end])
