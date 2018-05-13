@@ -72,7 +72,8 @@ async def on_message(message):
             await client.send_message(message.channel, "Here's a :cookie:")
         if message.content.lower().find("shut up nirmit") > -1:
             await client.send_message(message.channel, "https://media.giphy.com/media/3URfnnO4xuMaQ/giphy.gif")
-            
+        if message.content.lower().find("welcome to the rink") > -1:
+            await client.send_message(message.channel, "hi new person!! \n be sure to introduce yourself in #intros and to check out the rules pinned in #pressbox!")
         
 
 # 102540853649616896 this is me
