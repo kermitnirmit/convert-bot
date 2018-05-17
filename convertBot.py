@@ -6,7 +6,7 @@ import time
 
 Client = discord.Client()
 client = commands.Bot(command_prefix = "")
-cookieCounter = 169
+cookieCounter = 173
 @client.event
 async def on_ready():
     print("Bot is ready")
@@ -79,6 +79,9 @@ async def on_message(message):
             global cookieCounter
             incrementCookies()
             await client.send_message(message.channel, "Here's a :cookie:")
+        if message.content.lower().startswith("help me mermet"):
+            incrementCookies()
+            await client.send_message(message.channel, "Hi, I help with converting and mood boosting. \nI convert km/mi, kg/lbs, cm/in, and celsius/fahrenheit. \nTo convert, type: conv 123F \nto convert to Celsius and in that format for any other conversions. \n\nHere's a :cookie: for asking. Hope you like it! PM kermitnirmit if you need more help or have any suggestions!\n\n\nP.s. try typing cookiecount.")
             
 def incrementCookies():
     global cookieCounter
