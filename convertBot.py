@@ -6,6 +6,7 @@ import time
 
 Client = discord.Client()
 client = commands.Bot(command_prefix = "")
+cookieCounter = 169
 @client.event
 async def on_ready():
     print("Bot is ready")
@@ -13,6 +14,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.author.id != "435229925503533057":
+        global cookieCounter
         if message.content.lower().startswith("conv"):
             if message.content.lower().endswith("cm"):
                 end = len(message.content) - 2
@@ -68,12 +70,21 @@ async def on_message(message):
                 newC = old / 2.21
                 toReturn = str(newC)
                 await client.send_message(message.channel, message.content[4:end]+ "lbs is " + toReturn + "kg")    
-        if message.content.lower().find("mood") > -1:
-            await client.send_message(message.channel, "Here's a :cookie:")
         if message.content.lower().find("shut up nirmit") > -1:
             await client.send_message(message.channel, "https://media.giphy.com/media/3URfnnO4xuMaQ/giphy.gif")
-        if message.content.lower().find("welcome to the rink") > -1:
-            await client.send_message(message.channel, "hi new person!! \n be sure to introduce yourself in #intros and to check out the rules pinned in #pressbox!")        
+        if message.content.lower().find("cookiecount") > -1:
+            toReturn = getCookieCount()
+            await client.send_message(message.channel, "I've given " + toReturn + " cookies so far")
+        if message.content.lower().find("mood") > -1:
+            global cookieCounter
+            incrementCookies()
+            await client.send_message(message.channel, "Here's a :cookie:")
+            
+def incrementCookies():
+    global cookieCounter
+    cookieCounter = cookieCounter + 1
+def getCookieCount():
+    return str(cookieCounter)
 # 102540853649616896 this is me
 # 424418172746334229 this is amy
 
