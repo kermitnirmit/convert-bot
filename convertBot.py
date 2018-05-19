@@ -85,7 +85,7 @@ async def on_message(message):
         if message.content.lower().find("big mood") > -1:
             serv = getServer()
             setCookies(serv, 3)
-            await client.send_message(message.channel, "Y"+ ":cookie:"+ "u need a few C" + ":cookie:" + ":cookie:" + "kies")
+            await client.send_message(message.channel, "Y"+ ":cookie:"+ "U NEED A FEW C" + ":cookie:" + ":cookie:" + "KIES")
         elif message.content.lower().find("mood") > -1:
             serv = getServer()
             setCookies(serv, 1)
