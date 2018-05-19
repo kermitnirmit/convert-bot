@@ -3,10 +3,16 @@ from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio
 import time
+import pymongo
+from pymongo import MongoClient
 
+MONGODB_URI = "mongodb://cookie1:cookie@ds229290.mlab.com:29290/cookiecount"
+mongoc = MongoClient(MONGODB_URI, connectTimeoutMS=30000)
+db = mongoc.get_default_database()
+cookies = db.cookies
 Client = discord.Client()
 client = commands.Bot(command_prefix = "")
-cookieCounter = 173
+
 @client.event
 async def on_ready():
     print("Bot is ready")
@@ -14,7 +20,6 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.author.id != "435229925503533057":
-        global cookieCounter
         if message.content.lower().startswith("conv"):
             if message.content.lower().endswith("cm"):
                 end = len(message.content) - 2
@@ -73,21 +78,31 @@ async def on_message(message):
         if message.content.lower().find("shut up nirmit") > -1:
             await client.send_message(message.channel, "https://media.giphy.com/media/3URfnnO4xuMaQ/giphy.gif")
         if message.content.lower().find("cookiecount") > -1:
-            toReturn = getCookieCount()
+            toReturn = str(getCookies())
             await client.send_message(message.channel, "I've given " + toReturn + " cookies so far")
         if message.content.lower().find("mood") > -1:
-            global cookieCounter
-            incrementCookies()
+            serv = getServer()
+            setCookies(serv)
             await client.send_message(message.channel, "Here's a :cookie:")
         if message.content.lower().startswith("help me mermet"):
-            incrementCookies()
+            serv = getServer()
+            setCookies(serv)
             await client.send_message(message.channel, "Hi, I help with converting and mood boosting. \nI convert km/mi, kg/lbs, cm/in, and celsius/fahrenheit. \nTo convert, type: conv 123F \nto convert to Celsius and in that format for any other conversions. \n\nHere's a :cookie: for asking. Hope you like it! PM kermitnirmit if you need more help or have any suggestions!\n\n\nP.s. try typing cookiecount.")
             
-def incrementCookies():
-    global cookieCounter
-    cookieCounter = cookieCounter + 1
-def getCookieCount():
-    return str(cookieCounter)
+def getServer():
+    serv = cookies.find_one({"server":"ksas"})
+    return serv
+def getCookies():
+    cook = cookies.find_one({"server":"ksas"})
+    toReturn = cook['count'] 
+    return toReturn
+def setCookies(serv):
+    newC = getCookies() + 1
+    update = {
+        "count": newC
+    }
+    cookies.update_one({'_id': serv['_id']}, { '$set': update}, upsert=False)
+
 # 102540853649616896 this is me
 # 424418172746334229 this is amy
 
