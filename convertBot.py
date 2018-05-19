@@ -80,16 +80,20 @@ async def on_message(message):
         if message.content.lower().find("cookiecount") > -1:
             toReturn = str(getCookies())
             await client.send_message(message.channel, "I've given " + toReturn + " cookies so far")
-        if message.content.lower().find("t know her") > -1:
+        if message.content.lower().find("t know her") > -1 or message.content.lower().find("k her") > -1:
             await client.send_message(message.channel, "But I do")
-        if message.content.lower().find("mood") > -1:
+        if message.content.lower().find("big mood") > -1:
             serv = getServer()
-            setCookies(serv)
+            setCookies(serv, 3)
+            await client.send_message(message.channel, "Y"+ ":cookie:"+ "u need a few C" + ":cookie:" + ":cookie:" + "kies")
+        elif message.content.lower().find("mood") > -1:
+            serv = getServer()
+            setCookies(serv, 1)
             await client.send_message(message.channel, "Here's a :cookie:")
         if message.content.lower().startswith("help me mermet"):
             serv = getServer()
-            setCookies(serv)
-            await client.send_message(message.channel, "Hi, I help with converting and mood boosting. \nI convert km/mi, kg/lbs, cm/in, and celsius/fahrenheit. \nTo convert, type: conv 123F \nto convert to Celsius and in that format for any other conversions. \n\nHere's a :cookie: for asking. Hope you like it! PM kermitnirmit if you need more help or have any suggestions!\n\n\nP.s. try typing cookiecount.")
+            setCookies(serv, 1)
+            await client.send_message(message.channel, "Hi, I help with converting and mood boosting. \nI convert km/mi, kg/lbs, cm/in, and Celsius/Fahrenheit. \nTo convert, type: conv 123F \nto convert to Celsius and in that format for any other conversions. \n\nHere's a :cookie: for asking. Hope you like it! PM kermitnirmit if you need more help or have any suggestions!\n\n\nP.s. try typing cookiecount.")
             
 def getServer():
     serv = cookies.find_one({"server":"ksas"})
@@ -98,8 +102,8 @@ def getCookies():
     cook = cookies.find_one({"server":"ksas"})
     toReturn = cook['count'] 
     return toReturn
-def setCookies(serv):
-    newC = getCookies() + 1
+def setCookies(serv, inc):
+    newC = getCookies() + inc
     update = {
         "count": newC
     }
