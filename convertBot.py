@@ -80,7 +80,7 @@ async def on_message(message):
         if message.content.lower().find("cookiecount") > -1:
             toReturn = str(getCookies())
             await client.send_message(message.channel, "I've given " + toReturn + " cookies so far")
-        if message.content.lower().find("t know her") > -1 or message.content.lower().find("k her") > -1:
+        if message.content.lower().find("t know her") > -1 or message.content.lower().find("dk her") > -1:
             await client.send_message(message.channel, "But I do")
         if message.content.lower().find("big mood") > -1:
             serv = getServer()
