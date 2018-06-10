@@ -109,7 +109,5 @@ def setCookies(serv, inc):
     }
     cookies.update_one({'_id': serv['_id']}, { '$set': update}, upsert=False)
 
-# 102540853649616896 this is me
-# 424418172746334229 this is amy
 
 client.run("NDM1MjI5OTI1NTAzNTMzMDU3.DbWBKw.iW8tfFI3scd9tB3WnagVSJkux24")
