@@ -4,6 +4,8 @@ from discord.ext import commands
 import asyncio
 import time
 import pymongo
+import random
+import string
 from pymongo import MongoClient
 
 MONGODB_URI = "mongodb://cookie1:cookie@ds229290.mlab.com:29290/cookiecount"
@@ -90,6 +92,13 @@ async def on_message(message):
             serv = getServer()
             setCookies(serv, 1)
             await client.send_message(message.channel, "Here's a :cookie:")
+        if message.content.lower().endswith("wh") or message.content.lower().endswith("i just"):
+            leng = random.randint(12,26)
+            print(leng)
+            toReturn = ""
+            for x in range(1, leng):
+                toReturn = toReturn + random.choice(string.ascii_lowercase)
+            await client.send_message(message.channel, toReturn)
         if message.content.lower().startswith("help me mermet"):
             serv = getServer()
             setCookies(serv, 1)
