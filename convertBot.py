@@ -92,7 +92,7 @@ async def on_message(message):
             serv = getServer()
             setCookies(serv, 1)
             await client.send_message(message.channel, "Here's a :cookie:")
-        if message.content.lower().endswith("wh") or message.content.lower().endswith("i just"):
+        if message.content.lower().endswith("wh") or message.content.lower().endswith("i just") or message.content.lower().find("cecil") > -1:
             leng = random.randint(12,26)
             print(leng)
             toReturn = ""
