@@ -103,6 +103,14 @@ async def on_message(message):
             serv = getServer()
             setCookies(serv, 1)
             await client.send_message(message.channel, "Hi, I help with converting and mood boosting. \nI convert km/mi, kg/lbs, cm/in, and Celsius/Fahrenheit. \nTo convert, type: conv 123F \nto convert to Celsius and in that format for any other conversions. \n\nHere's a :cookie: for asking. Hope you like it! PM kermitnirmit if you need more help or have any suggestions!\n\n\nP.s. try typing cookiecount.")
+        chance = random.randint(1,100)
+        if chance > 98:
+            leng = random.randint(12,26)
+            print(leng)
+            toReturn = ""
+            for x in range(1, leng):
+                toReturn = toReturn + random.choice(string.ascii_lowercase)
+            await client.send_message(message.channel, toReturn)
             
 def getServer():
     serv = cookies.find_one({"server":"ksas"})
