@@ -119,7 +119,8 @@ async def on_message(message):
             for x in range(1, leng):
                 toReturn = toReturn + random.choice(string.ascii_lowercase)
             await client.send_message(message.channel, toReturn)
-            
+        if message.content.lower().find("despacito") > -1:
+            await client.send_message(message.channel, "2")
 def getServer():
     serv = cookies.find_one({"server":"ksas"})
     return serv
