@@ -111,7 +111,7 @@ async def on_message(message):
             for x in range(1, leng):
                 toReturn = toReturn + random.choice(string.ascii_lowercase)
             await client.send_message(message.channel, toReturn)
-        elif message.author.id is "215984308303691777":
+        elif message.author.id == "215984308303691777":
             if chance > 200:
                 leng = random.randint(20,35)
             print(leng)
@@ -134,6 +134,5 @@ def setCookies(serv, inc):
         "count": newC
     }
     cookies.update_one({'_id': serv['_id']}, { '$set': update}, upsert=False)
-
 
 client.run("NDM1MjI5OTI1NTAzNTMzMDU3.DbWBKw.iW8tfFI3scd9tB3WnagVSJkux24")
