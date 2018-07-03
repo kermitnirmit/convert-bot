@@ -121,8 +121,6 @@ async def on_message(message):
             await client.send_message(message.channel, toReturn)
         if message.content.lower().find("despacito") > -1:
             await client.send_message(message.channel, "2")
-        if message.content.lower().find("lumber lad") > -1:
-            await client.send_message(message.channel, "https://cdn.discordapp.com/attachments/460797766885703710/463560821289648128/Screen_Shot_2018-07-03_at_12.22.36_AM.png")
 def getServer():
     serv = cookies.find_one({"server":"ksas"})
     return serv
