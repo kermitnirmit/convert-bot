@@ -10,7 +10,7 @@ import string
 from pymongo import MongoClient
 
 
-MONGODB_URI = os.environ['MONGOURI']
+MONGODB_URI = "mongodb://cookie1:cookie@ds229290.mlab.com:29290/cookiecount"
 mongoc = MongoClient(MONGODB_URI, connectTimeoutMS=30000)
 db = mongoc.get_default_database()
 cookies = db.cookies
@@ -123,6 +123,9 @@ async def on_message(message):
             await client.send_message(message.channel, toReturn)
         if message.content.lower().find("despacito") > -1:
             await client.send_message(message.channel, "2")
+        if message.author.id == "193934721921581057" and message.content.lower().find("hungry") > -1:
+            await client.send_message(message.channel, "eat something")
+
 def getServer():
     serv = cookies.find_one({"server":"ksas"})
     return serv
@@ -136,4 +139,4 @@ def setCookies(serv, inc):
         "count": newC
     }
     cookies.update_one({'_id': serv['_id']}, { '$set': update}, upsert=False)
-client.run(os.environ['TOKEN'])
+client.run("NDM1MjI5OTI1NTAzNTMzMDU3.DjJpTg.hC2wkasbSAc159tDToqFSOcXqzw")
