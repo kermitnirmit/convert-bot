@@ -2,13 +2,15 @@ import discord
 from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio
+import os
 import time
 import pymongo
 import random
 import string
 from pymongo import MongoClient
 
-MONGODB_URI = "mongodb://cookie1:cookie@ds229290.mlab.com:29290/cookiecount"
+
+MONGODB_URI = os.environ['MONGOURI']
 mongoc = MongoClient(MONGODB_URI, connectTimeoutMS=30000)
 db = mongoc.get_default_database()
 cookies = db.cookies
@@ -134,5 +136,4 @@ def setCookies(serv, inc):
         "count": newC
     }
     cookies.update_one({'_id': serv['_id']}, { '$set': update}, upsert=False)
-
-client.run("NDM1MjI5OTI1NTAzNTMzMDU3.DbWBKw.iW8tfFI3scd9tB3WnagVSJkux24")
+client.run(os.environ['TOKEN'])
