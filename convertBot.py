@@ -139,4 +139,4 @@ def setCookies(serv, inc):
         "count": newC
     }
     cookies.update_one({'_id': serv['_id']}, { '$set': update}, upsert=False)
-client.run("NDM1MjI5OTI1NTAzNTMzMDU3.DjJpTg.hC2wkasbSAc159tDToqFSOcXqzw")
+client.run(os.environ['TOKEN'])
