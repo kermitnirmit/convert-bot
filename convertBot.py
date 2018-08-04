@@ -125,6 +125,8 @@ async def on_message(message):
             await client.send_message(message.channel, "2")
         if message.author.id == "193934721921581057" and message.content.lower().find("hungry") > -1:
             await client.send_message(message.channel, "eat something")
+        if message.author.id == "459884169019785246" and message.content.lower().find("stab") > -1:
+            await client.send_message(message.channel, "Days since Stef talked about stabbing someone: 0")
 
 def getServer():
     serv = cookies.find_one({"server":"ksas"})
