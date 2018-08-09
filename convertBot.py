@@ -125,7 +125,7 @@ async def on_message(message):
             await client.send_message(message.channel, "2")
         if message.author.id == "193934721921581057" and message.content.lower().find("hungry") > -1:
             await client.send_message(message.channel, "eat something")
-        if message.channel.id != "447583808653492244" and (message.content.lower().find("bts") > -1 or message.content.lower().find("kpop") > -1):
+        if message.guild.id == "428013484773736460" and message.channel.id != "447583808653492244" and (message.content.lower().find("bts") > -1 or message.content.lower().find("kpop") > -1):
             await client.send_message(message.channel, "Kpop talk in #annikorea please")
 
 def getServer():
