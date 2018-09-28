@@ -129,7 +129,7 @@ async def on_message(message):
         if re.search(r'is it valid\?*$', message.content.lower(),re.I) :
             rando = random.randint(1, 1000)
             toReturn = "No."
-            if rando < 300:
+            if rando < 500:
                 toReturn = "Yes."
             await client.send_message(message.channnel, toReturn)
 
