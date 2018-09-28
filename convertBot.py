@@ -6,6 +6,7 @@ import os
 import time
 import pymongo
 import random
+import re
 import string
 from pymongo import MongoClient
 
@@ -125,8 +126,12 @@ async def on_message(message):
             await client.send_message(message.channel, "2")
         if message.author.id == "193934721921581057" and message.content.lower().find("hungry") > -1:
             await client.send_message(message.channel, "eat something")
-        if message.guild.id == "428013484773736460" and message.channel.id != "447583808653492244" and (message.content.lower().find("bts") > -1 or message.content.lower().find("kpop") > -1):
-            await client.send_message(message.channel, "Kpop talk in #annikorea please")
+        if re.search(r'is it valid\?*$', message.content.lower(),re.I) :
+            rando = random.randint(1, 1000)
+            toReturn = "No."
+            if rando < 300:
+                toReturn = "Yes."
+            await client.send_message(message.channnel, toReturn)
 
 def getServer():
     serv = cookies.find_one({"server":"ksas"})
