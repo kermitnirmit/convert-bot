@@ -8,6 +8,7 @@ import pymongo
 import random
 import string
 from pymongo import MongoClient
+from currency_converter import CurrencyConverter
 
 
 MONGODB_URI = "mongodb://cookie1:cookie@ds229290.mlab.com:29290/cookiecount"
@@ -16,7 +17,7 @@ db = mongoc.get_default_database()
 cookies = db.cookies
 Client = discord.Client()
 client = commands.Bot(command_prefix = "")
-
+c = CurrencyConverter()
 @client.event
 async def on_ready():
     print("Bot is ready")
@@ -125,8 +126,22 @@ async def on_message(message):
             await client.send_message(message.channel, "2")
         if message.author.id == "193934721921581057" and message.content.lower().find("hungry") > -1:
             await client.send_message(message.channel, "eat something")
-        if message.guild.id == "428013484773736460" and message.channel.id != "447583808653492244" and (message.content.lower().find("bts") > -1 or message.content.lower().find("kpop") > -1):
-            await client.send_message(message.channel, "Kpop talk in #annikorea please")
+        messagetext = message.content.lower()
+        if messagetext.startswith("$$"):
+            words = messagetext.split()
+            # words should be ['$$', '12.121', 'USD' 'to/in/whatever', 'EUR']
+            if len(words) != 5:
+                pass
+            else:
+                toSend = currConvert(words)
+                await client.send_message(message.channel, toSend)
+def currConvert(words):
+    q, origV, origC, w, finalC = words
+    origV = float(origV)
+    finalV = c.convert(origV, origC, finalC)
+    rounded = round(finalV, 2)
+    toReturn = origV + " " + origC + " is " + rounded + " " + finalC
+    return toReturn
 
 def getServer():
     serv = cookies.find_one({"server":"ksas"})
