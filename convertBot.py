@@ -126,7 +126,7 @@ async def on_message(message):
             await client.send_message(message.channel, "2")
         if message.author.id == "193934721921581057" and message.content.lower().find("hungry") > -1:
             await client.send_message(message.channel, "eat something")
-        messagetext = message.content.lower()
+        messagetext = message.content
         if messagetext.startswith("$$"):
             words = messagetext.split()
             # words should be ['$$', '12.121', 'USD' 'to/in/whatever', 'EUR']
@@ -138,10 +138,13 @@ async def on_message(message):
 def currConvert(words):
     q, origV, origC, w, finalC = words
     origV = float(origV)
-    finalV = c.convert(origV, origC, finalC)
-    rounded = round(finalV, 2)
-    toReturn = origV + " " + origC + " is " + rounded + " " + finalC
-    return toReturn
+    try: 
+        finalV = c.convert(origV, origC, finalC)
+        rounded = round(finalV, 2)
+        toReturn = str(origV) + " " + str(origC) + " is " + str(rounded) + " " + str(finalC)
+        return toReturn
+    except ValueError:
+        return "Wrong currency names, try again."
 
 def getServer():
     serv = cookies.find_one({"server":"ksas"})
