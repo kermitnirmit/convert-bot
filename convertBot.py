@@ -6,6 +6,7 @@ import os
 import time
 import pymongo
 import random
+import re
 import string
 from pymongo import MongoClient
 from currency_converter import CurrencyConverter
@@ -146,7 +147,6 @@ def currConvert(words):
         return toReturn
     except ValueError:
         return "Wrong currency names, try again."
-
 def getServer():
     serv = cookies.find_one({"server":"ksas"})
     return serv
