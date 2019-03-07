@@ -123,8 +123,11 @@ async def on_message(message):
             for x in range(1, leng):
                 toReturn = toReturn + random.choice(string.ascii_lowercase)
             await client.send_message(message.channel, toReturn)
-        if message.content.lower().find("despacito") > -1:
-            await client.send_message(message.channel, "2")
+        if message.author.id == "424418172746334229":
+            messsageString = message.content
+            x = re.findall("l.*o", messageString, flags= re.IGNORECASE)
+            if len(x) > 0:
+                await client.send_message(message.channel, "C'mon Amy")
         if message.author.id == "193934721921581057" and message.content.lower().find("hungry") > -1:
             await client.send_message(message.channel, "eat something")
         messagetext = message.content
