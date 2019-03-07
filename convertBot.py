@@ -123,7 +123,7 @@ async def on_message(message):
             for x in range(1, leng):
                 toReturn = toReturn + random.choice(string.ascii_lowercase)
             await client.send_message(message.channel, toReturn)
-        if message.author.id == "424418172746334229":
+        if message.author.id == "102540853649616896":
             messsageString = message.content
             x = re.findall("l.*o", messageString, flags= re.IGNORECASE)
             if len(x) > 0:
