@@ -81,6 +81,8 @@ async def on_message(message):
                 newC = old / 2.21
                 toReturn = str(newC)
                 await client.send_message(message.channel, message.content[4:end]+ "lbs is " + toReturn + "kg")    
+        if message.content.lower().startswith("/triggers"):
+            await client.send_message(message.channel, "See here: https://discordapp.com/channels/428013484773736460/460029311991414794/466301615918415893")
         if message.content.lower().find("shut up nirmit") > -1:
             await client.send_message(message.channel, "https://media.giphy.com/media/3URfnnO4xuMaQ/giphy.gif")
         if message.content.lower().find("cookiecount") > -1:
